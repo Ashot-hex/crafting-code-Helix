@@ -7,6 +7,9 @@ namespace Tax.Simulator;
 /// </summary>
 public class Foyer
 {
+    public static readonly string COUPLE = "Marié/Pacsé";
+    public static readonly string CELIBATAIRE = "Célibataire";
+
     private string situationFamiliale;
     private decimal salairePrincipal;
     private decimal salaireConjoint;
@@ -36,13 +39,12 @@ public class Foyer
     /// <summary>
     /// Verifie que tout les attributs ont étés correctement définit
     /// </summary>
-    /// 
     /// <exception cref="SituationFamilialeInvalide">Si la situation familiale est invalide</exception>
     /// <exception cref="SalaireNegatif">Si le salaire principal, ou celui du conjoint, est invalide</exception>
     /// <exception cref="NombreEnfantsInvalide">Si le nombre d'enfants donnés est invalide</exception>
     private void VerifierValeurs()
     {
-        if (situationFamiliale != "Célibataire" && situationFamiliale != "Marié/Pacsé")
+        if (situationFamiliale != CELIBATAIRE && situationFamiliale != COUPLE)
         {
             throw new SituationFamilialeInvalide();
         }
@@ -52,7 +54,7 @@ public class Foyer
             throw new SalaireNegatif();
         }
 
-        if (situationFamiliale == "Marié/Pacsé" && salaireConjoint < 0)
+        if (situationFamiliale == COUPLE && salaireConjoint < 0)
         {
             throw new SalaireNegatif();
         }
@@ -75,7 +77,7 @@ public class Foyer
     {
         get
         {
-            int baseQuotient = situationFamiliale == "Marié/Pacsé" ? 2 : 1;
+            int baseQuotient = situationFamiliale == COUPLE ? 2 : 1;
             decimal quotientEnfants = 0m;
 
             if (nombreEnfants <= 2)
