@@ -1,10 +1,13 @@
+using Tax.Simulator.Exceptions;
+
 namespace Tax.Simulator;
 
 public static class Simulateur
 {
     private const int MOIS_PAR_ANNEE = 12; //Nombre de mois dans l'année
 
-    private static readonly decimal[] TRANCHES_IMPOSITION = { 10225m, 26070m, 74545m, 160336m }; // Plafonds des tranches
+    private static readonly decimal[]
+        TRANCHES_IMPOSITION = { 10225m, 26070m, 74545m, 160336m }; // Plafonds des tranches
 
     private static readonly decimal[] TAUX_IMPOSITION = { 0.0m, 0.11m, 0.30m, 0.41m, 0.45m }; // Taux correspondants
 
@@ -17,22 +20,22 @@ public static class Simulateur
     {
         if (situationFamiliale != "Célibataire" && situationFamiliale != "Marié/Pacsé")
         {
-            throw new ArgumentException("Situation familiale invalide.");
+            throw new SituationFamilialeInvalide();
         }
 
         if (salaireMensuel <= 0)
         {
-            throw new ArgumentException("Les salaires doivent être positifs.");
+            throw new SalaireNegatif();
         }
 
         if (situationFamiliale == "Marié/Pacsé" && salaireMensuelConjoint < 0)
         {
-            throw new InvalidDataException("Les salaires doivent être positifs.");
+            throw new SalaireNegatif();
         }
 
         if (nombreEnfants < 0)
         {
-            throw new ArgumentException("Le nombre d'enfants ne peut pas être négatif.");
+            throw new NombreEnfantsInvalide();
         }
 
         decimal revenuAnnuel;
