@@ -8,17 +8,17 @@ public class FoyerShould
     public void CalculPartsFiscalesCelibataire()
     {
         Foyer f;
-        f = new Foyer("Célibataire", 0, 1000, 1000);
+        f = new Foyer(Foyer.CELIBATAIRE, 0, 1000, 1000);
         f.PartsFiscales.Should().Be(1);
-        f = new Foyer("Célibataire", 1, 1000, 1000);
+        f = new Foyer(Foyer.CELIBATAIRE, 1, 1000, 1000);
         f.PartsFiscales.Should().Be(1.5m);
-        f = new Foyer("Célibataire", 2, 1000, 1000);
+        f = new Foyer(Foyer.CELIBATAIRE, 2, 1000, 1000);
         f.PartsFiscales.Should().Be(2);
-        f = new Foyer("Célibataire", 3, 1000, 1000);
+        f = new Foyer(Foyer.CELIBATAIRE, 3, 1000, 1000);
         f.PartsFiscales.Should().Be(2.5m);
-        f = new Foyer("Célibataire", 4, 1000, 1000);
+        f = new Foyer(Foyer.CELIBATAIRE, 4, 1000, 1000);
         f.PartsFiscales.Should().Be(3);
-        f = new Foyer("Célibataire", 5, 1000, 1000);
+        f = new Foyer(Foyer.CELIBATAIRE, 5, 1000, 1000);
         f.PartsFiscales.Should().Be(3.5m);
     }
 
@@ -27,24 +27,24 @@ public class FoyerShould
     {
         Foyer f;
 
-        f = new Foyer("Marié/Pacsé", 0, 1000, 1000);
+        f = new Foyer(Foyer.COUPLE, 0, 1000, 1000);
         f.PartsFiscales.Should().Be(2);
-        f = new Foyer("Marié/Pacsé", 1, 1000, 1000);
+        f = new Foyer(Foyer.COUPLE, 1, 1000, 1000);
         f.PartsFiscales.Should().Be(2.5m);
-        f = new Foyer("Marié/Pacsé", 2, 1000, 1000);
+        f = new Foyer(Foyer.COUPLE, 2, 1000, 1000);
         f.PartsFiscales.Should().Be(3);
-        f = new Foyer("Marié/Pacsé", 3, 1000, 1000);
+        f = new Foyer(Foyer.COUPLE, 3, 1000, 1000);
         f.PartsFiscales.Should().Be(3.5m);
-        f = new Foyer("Marié/Pacsé", 4, 1000, 1000);
+        f = new Foyer(Foyer.COUPLE, 4, 1000, 1000);
         f.PartsFiscales.Should().Be(4);
-        f = new Foyer("Marié/Pacsé", 5, 1000, 1000);
+        f = new Foyer(Foyer.COUPLE, 5, 1000, 1000);
         f.PartsFiscales.Should().Be(4.5m);
     }
 
     [Fact]
     public void ConstuctionEtValidation()
     {
-        string situationValide = "Marié/Pacsé";
+        string situationValide = Foyer.COUPLE;
         string situationInvalide = "Invalide";
 
         int nbEnfantsValide = 1;
@@ -79,7 +79,7 @@ public class FoyerShould
     [Fact]
     public void CalculSalaireMensuelTotal()
     {
-        string situationFamiliale = "Marié/Pacsé";
+        string situationFamiliale = Foyer.COUPLE;
         int nombreEnfants = 0;
 
         Foyer f;

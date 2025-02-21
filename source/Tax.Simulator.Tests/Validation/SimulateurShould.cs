@@ -10,7 +10,7 @@ public class SimulateurShould
     {
         Action action = () => Simulateur.CalculerImpotsAnnuel(
             new Foyer(
-                "Divorcé",
+                "Divorcé", // Invalide
                 2,
                 3000
             )
@@ -24,7 +24,7 @@ public class SimulateurShould
     {
         Action action = () => Simulateur.CalculerImpotsAnnuel(
             new Foyer(
-                "Célibataire",
+                Foyer.CELIBATAIRE,
                 2,
                 -3000
             )
@@ -38,7 +38,7 @@ public class SimulateurShould
     {
         Action action = () => Simulateur.CalculerImpotsAnnuel(
             new Foyer(
-                "Marié/Pacsé",
+                Foyer.COUPLE,
                 -2,
                 3000,
                 2000

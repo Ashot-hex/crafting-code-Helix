@@ -8,7 +8,7 @@ public class ImpotsCoupleShould
     [Fact(DisplayName = "Calcul des impôts selon le salaire mensuel")]
     public void CalculSelonSalairePrincipal()
     {
-        string situationFamiliale = "Marié/Pacsé";
+        string situationFamiliale = Foyer.COUPLE;
         int salaireMensuelConjoint = 2500;
         int nombreEnfants = 0;
 
@@ -50,7 +50,7 @@ public class ImpotsCoupleShould
     [Fact(DisplayName = "Calcul des impôts selon le salaire mensuel du conjoint")]
     public void CalculSelonSalaireConjoint()
     {
-        string situationFamiliale = "Marié/Pacsé";
+        string situationFamiliale = Foyer.COUPLE;
         int salaireMensuelPrincipal = 2000;
         int nombreEnfants = 0;
 
@@ -81,7 +81,7 @@ public class ImpotsCoupleShould
     [Fact(DisplayName = "Calcul des impôts selon le nombre d'enfants à charge")]
     public void CalculSelonNombreEnfants()
     {
-        string situationFamiliale = "Marié/Pacsé";
+        string situationFamiliale = Foyer.COUPLE;
         int salaireMensuelPrincipal = 2000;
         int salaireMensuelConjoint = 2500;
 

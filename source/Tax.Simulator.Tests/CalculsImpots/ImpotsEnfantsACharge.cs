@@ -8,7 +8,7 @@ public class ImpotsEnfantsACharge
     [Fact(DisplayName = "Calcul des impôts selon le nombre d'enfants à charge")]
     public void CalculSelonNombreEnfants()
     {
-        string situationFamiliale = "Marié/Pacsé";
+        string situationFamiliale = Foyer.COUPLE;
         int salaireMensuelPrincipal = 2000;
         int salaireMensuelConjoint = 2500;
         int nombreEnfants = 0;

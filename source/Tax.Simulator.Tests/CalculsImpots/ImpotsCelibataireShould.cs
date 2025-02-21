@@ -5,8 +5,8 @@ namespace Tax.Simulator.Tests.CalculsImpots;
 
 public class ImpotsCelibataireShould
 {
-    private const string situationFamiliale = "Célibataire";
-    private const int salaireMensuelConjoint = 0;
+    private static readonly string situationFamiliale = Foyer.CELIBATAIRE;
+    private static readonly int salaireMensuelConjoint = 0;
 
     [Fact(DisplayName = "Calcul des impôts selon le salaire mensuel")]
     public void CalculSelonSalaire()
