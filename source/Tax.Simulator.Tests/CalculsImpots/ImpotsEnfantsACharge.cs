@@ -13,28 +13,34 @@ public class ImpotsEnfantsACharge
         int salaireMensuelConjoint = 2500;
         int nombreEnfants = 0;
         decimal resultat = Simulateur.CalculerImpotsAnnuel(
-            situationFamiliale,
-            salaireMensuelPrincipal,
-            salaireMensuelConjoint,
-            nombreEnfants
+            new Foyer(
+                situationFamiliale,
+                nombreEnfants,
+                salaireMensuelPrincipal,
+                salaireMensuelConjoint
+            )
         );
         resultat.Should().Be(4043.90m);
 
         nombreEnfants = 5;
         resultat = Simulateur.CalculerImpotsAnnuel(
-            situationFamiliale,
-            salaireMensuelPrincipal,
-            salaireMensuelConjoint,
-            nombreEnfants
+            new Foyer(
+                situationFamiliale,
+                nombreEnfants,
+                salaireMensuelPrincipal,
+                salaireMensuelConjoint
+            )
         );
         resultat.Should().Be(878.62m);
 
         nombreEnfants = -2;
         Action action = () => Simulateur.CalculerImpotsAnnuel(
-            situationFamiliale,
-            salaireMensuelConjoint,
-            salaireMensuelPrincipal,
-            nombreEnfants
+            new Foyer(
+                situationFamiliale,
+                nombreEnfants,
+                salaireMensuelConjoint,
+                salaireMensuelPrincipal
+            )
         );
 
         action.Should().Throw<NombreEnfantsInvalide>();

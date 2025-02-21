@@ -6,7 +6,7 @@ namespace Tax.Simulator.Tests.CalculsImpots;
 public class ImpotsCelibataireShould
 {
     private const string situationFamiliale = "Célibataire";
-    private const int salaireMensuelConjoint = 2500;
+    private const int salaireMensuelConjoint = 0;
 
     [Fact(DisplayName = "Calcul des impôts selon le salaire mensuel")]
     public void CalculSelonSalaire()
@@ -15,28 +15,31 @@ public class ImpotsCelibataireShould
 
         int salaireMensuelPrincipal = 2000;
         decimal resultat = Simulateur.CalculerImpotsAnnuel(
-            situationFamiliale,
-            salaireMensuelPrincipal,
-            salaireMensuelConjoint,
-            nombreEnfants
+            new Foyer(
+                situationFamiliale,
+                nombreEnfants,
+                salaireMensuelPrincipal
+            )
         );
         resultat.Should().Be(1515.25m);
 
         salaireMensuelPrincipal = 0;
         Action action = () => Simulateur.CalculerImpotsAnnuel(
-            situationFamiliale,
-            salaireMensuelPrincipal,
-            salaireMensuelConjoint,
-            nombreEnfants
+            new Foyer(
+                situationFamiliale,
+                nombreEnfants,
+                salaireMensuelPrincipal
+            )
         );
         action.Should().Throw<SalaireNegatif>();
 
         salaireMensuelPrincipal = -2000;
         action = () => Simulateur.CalculerImpotsAnnuel(
-            situationFamiliale,
-            salaireMensuelPrincipal,
-            salaireMensuelConjoint,
-            nombreEnfants
+            new Foyer(
+                situationFamiliale,
+                nombreEnfants,
+                salaireMensuelPrincipal
+            )
         );
 
         action.Should().Throw<SalaireNegatif>();
@@ -49,28 +52,31 @@ public class ImpotsCelibataireShould
 
         int nombreEnfants = 0;
         decimal resultat = Simulateur.CalculerImpotsAnnuel(
-            situationFamiliale,
-            salaireMensuelPrincipal,
-            salaireMensuelConjoint,
-            nombreEnfants
+            new Foyer(
+                situationFamiliale,
+                nombreEnfants,
+                salaireMensuelPrincipal
+            )
         );
         resultat.Should().Be(1515.25m);
 
         nombreEnfants = 1;
         resultat = Simulateur.CalculerImpotsAnnuel(
-            situationFamiliale,
-            salaireMensuelPrincipal,
-            salaireMensuelConjoint,
-            nombreEnfants
+            new Foyer(
+                situationFamiliale,
+                nombreEnfants,
+                salaireMensuelPrincipal
+            )
         );
         resultat.Should().Be(952.88m);
 
         nombreEnfants = -2;
         Action action = () => Simulateur.CalculerImpotsAnnuel(
-            situationFamiliale,
-            salaireMensuelConjoint,
-            salaireMensuelPrincipal,
-            nombreEnfants
+            new Foyer(
+                situationFamiliale,
+                nombreEnfants,
+                salaireMensuelPrincipal
+            )
         );
 
         action.Should().Throw<NombreEnfantsInvalide>();

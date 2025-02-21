@@ -21,12 +21,14 @@ app.MapGet("/api/tax/calculate",
         {
             try
             {
+                Foyer foyer = new Foyer(
+                    situationFamiliale,
+                    nombreEnfants,
+                    salaireMensuel,
+                    salaireMensuelConjoint
+                );
                 return Results.Ok(
-                    Simulateur.CalculerImpotsAnnuel(
-                        situationFamiliale,
-                        salaireMensuel,
-                        salaireMensuelConjoint,
-                        nombreEnfants)
+                    Simulateur.CalculerImpotsAnnuel(foyer)
                 );
             }
             catch (ArgumentException ex)

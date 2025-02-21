@@ -9,10 +9,11 @@ public class SimulateurShould
     public void SituationFamilialeInvalide()
     {
         Action action = () => Simulateur.CalculerImpotsAnnuel(
-            "Divorcé",
-            3000,
-            0,
-            2
+            new Foyer(
+                "Divorcé",
+                2,
+                3000
+            )
         );
 
         action.Should().Throw<SituationFamilialeInvalide>().WithMessage("Situation familiale invalide.");
@@ -22,10 +23,11 @@ public class SimulateurShould
     public void SalaireMensuelNegatif()
     {
         Action action = () => Simulateur.CalculerImpotsAnnuel(
-            "Célibataire",
-            -3000,
-            0,
-            2
+            new Foyer(
+                "Célibataire",
+                2,
+                -3000
+            )
         );
 
         action.Should().Throw<SalaireNegatif>().WithMessage("Les salaires doivent être positifs.");
@@ -35,10 +37,12 @@ public class SimulateurShould
     public void NombreEnfantsNegatif()
     {
         Action action = () => Simulateur.CalculerImpotsAnnuel(
-            "Marié/Pacsé",
-            3000,
-            2000,
-            -2
+            new Foyer(
+                "Marié/Pacsé",
+                -2,
+                3000,
+                2000
+            )
         );
 
         action.Should().Throw<NombreEnfantsInvalide>().WithMessage("Le nombre d'enfants ne peut pas être négatif.");
