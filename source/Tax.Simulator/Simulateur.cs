@@ -48,17 +48,9 @@ public static class Simulateur
         var baseQuotient = situationFamiliale == "Marié/Pacsé" ? 2 : 1;
         decimal quotientEnfants = 0m;
 
-        if (nombreEnfants == 0)
+        if (nombreEnfants <= 2)
         {
-            quotientEnfants = 0;
-        }
-        else if (nombreEnfants == 1)
-        {
-            quotientEnfants = 0.5m;
-        }
-        else if (nombreEnfants == 2)
-        {
-            quotientEnfants = 1.0m;
+            quotientEnfants = nombreEnfants / 2m;
         }
         else
         {
