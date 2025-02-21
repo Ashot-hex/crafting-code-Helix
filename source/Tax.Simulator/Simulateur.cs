@@ -2,6 +2,8 @@ namespace Tax.Simulator;
 
 public static class Simulateur
 {
+    private const int MOIS_PAR_ANNEE = 12; //Nombre de mois dans l'année
+    
     private static readonly decimal[] TRANCHES_IMPOSITION = { 10225m, 26070m, 74545m, 160336m }; // Plafonds des tranches
     private static readonly decimal[] TAUX_IMPOSITION = { 0.0m, 0.11m, 0.30m, 0.41m, 0.45m }; // Taux correspondants
 
@@ -35,11 +37,11 @@ public static class Simulateur
         decimal revenuAnnuel;
         if (situationFamiliale == "Marié/Pacsé")
         {
-            revenuAnnuel = (salaireMensuel + salaireMensuelConjoint) * 12;
+            revenuAnnuel = (salaireMensuel + salaireMensuelConjoint) * MOIS_PAR_ANNEE;
         }
         else
         {
-            revenuAnnuel = salaireMensuel * 12;
+            revenuAnnuel = salaireMensuel * MOIS_PAR_ANNEE;
         }
 
         var baseQuotient = situationFamiliale == "Marié/Pacsé" ? 2 : 1;
