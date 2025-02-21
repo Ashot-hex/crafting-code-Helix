@@ -3,8 +3,9 @@ namespace Tax.Simulator;
 public static class Simulateur
 {
     private const int MOIS_PAR_ANNEE = 12; //Nombre de mois dans l'année
-    
+
     private static readonly decimal[] TRANCHES_IMPOSITION = { 10225m, 26070m, 74545m, 160336m }; // Plafonds des tranches
+
     private static readonly decimal[] TAUX_IMPOSITION = { 0.0m, 0.11m, 0.30m, 0.41m, 0.45m }; // Taux correspondants
 
     public static decimal CalculerImpotsAnnuel(
@@ -86,8 +87,6 @@ public static class Simulateur
             impot += (revenuImposableParPart - TRANCHES_IMPOSITION[^1]) * TAUX_IMPOSITION[^1];
         }
 
-        var impotParPart = impot;
-
-        return Math.Round(impotParPart * partsFiscales, 2);
+        return Math.Round(impot * partsFiscales, 2);
     }
 }
