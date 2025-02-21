@@ -3,7 +3,7 @@ using Tax.Simulator.Exceptions;
 
 namespace Tax.Simulator.Tests.CalculsImpots;
 
-public class ImpotsEnfantsACharge
+public class ImpotsEnfantsAChargeShould
 {
     [Fact(DisplayName = "Calcul des impôts selon le nombre d'enfants à charge")]
     public void CalculSelonNombreEnfants()
