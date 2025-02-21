@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Tax.Simulator.Exceptions;
 
 namespace Tax.Simulator.Tests.CalculsImpots;
 
@@ -36,6 +37,6 @@ public class ImpotsEnfantsACharge
             nombreEnfants
         );
 
-        action.Should().Throw<ArgumentException>();
+        action.Should().Throw<NombreEnfantsInvalide>();
     }
 }

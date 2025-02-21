@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Tax.Simulator.Exceptions;
 
 namespace Tax.Simulator.Tests.Validation;
 
@@ -14,7 +15,7 @@ public class SimulateurShould
             2
         );
 
-        action.Should().Throw<ArgumentException>().WithMessage("Situation familiale invalide.");
+        action.Should().Throw<SituationFamilialeInvalide>().WithMessage("Situation familiale invalide.");
     }
 
     [Fact(DisplayName = "Salaire mensuel négatif")]
@@ -27,7 +28,7 @@ public class SimulateurShould
             2
         );
 
-        action.Should().Throw<ArgumentException>().WithMessage("Les salaires doivent être positifs.");
+        action.Should().Throw<SalaireNegatif>().WithMessage("Les salaires doivent être positifs.");
     }
 
     [Fact(DisplayName = "Nombre enfants négatif")]
@@ -40,6 +41,6 @@ public class SimulateurShould
             -2
         );
 
-        action.Should().Throw<ArgumentException>().WithMessage("Le nombre d'enfants ne peut pas être négatif.");
+        action.Should().Throw<NombreEnfantsInvalide>().WithMessage("Le nombre d'enfants ne peut pas être négatif.");
     }
 }

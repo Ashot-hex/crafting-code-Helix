@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Tax.Simulator.Exceptions;
 
 namespace Tax.Simulator.Tests.CalculsImpots;
 
@@ -27,7 +28,7 @@ public class ImpotsCoupleShould
             salaireMensuelConjoint,
             nombreEnfants
         );
-        action.Should().Throw<ArgumentException>();
+        action.Should().Throw<SalaireNegatif>();
 
         salaireMensuelPrincipal = -2000;
         action = () => Simulateur.CalculerImpotsAnnuel(
@@ -37,7 +38,7 @@ public class ImpotsCoupleShould
             nombreEnfants
         );
 
-        action.Should().Throw<ArgumentException>();
+        action.Should().Throw<SalaireNegatif>();
     }
 
     [Fact(DisplayName = "Calcul des impôts selon le salaire mensuel du conjoint")]
@@ -64,7 +65,7 @@ public class ImpotsCoupleShould
             nombreEnfants
         );
 
-        action.Should().Throw<ArgumentException>();
+        action.Should().Throw<SalaireNegatif>();
     }
 
     [Fact(DisplayName = "Calcul des impôts selon le nombre d'enfants à charge")]
@@ -100,6 +101,6 @@ public class ImpotsCoupleShould
             nombreEnfants
         );
 
-        action.Should().Throw<ArgumentException>();
+        action.Should().Throw<NombreEnfantsInvalide>();
     }
 }
