@@ -68,10 +68,8 @@ public static class Simulateur
                 impot += (revenuImposableParPart - (i > 0 ? TRANCHES_IMPOSITION[i - 1] : 0)) * TAUX_IMPOSITION[i];
                 break;
             }
-            else
-            {
-                impot += (TRANCHES_IMPOSITION[i] - (i > 0 ? TRANCHES_IMPOSITION[i - 1] : 0)) * TAUX_IMPOSITION[i];
-            }
+
+            impot += (TRANCHES_IMPOSITION[i] - (i > 0 ? TRANCHES_IMPOSITION[i - 1] : 0)) * TAUX_IMPOSITION[i];
         }
 
         if (revenuImposableParPart > TRANCHES_IMPOSITION[^1])
