@@ -2,8 +2,8 @@ namespace Tax.Simulator;
 
 public static class Simulateur
 {
-    private static readonly decimal[] TranchesImposition = { 10225m, 26070m, 74545m, 160336m }; // Plafonds des tranches
-    private static readonly decimal[] TauxImposition = { 0.0m, 0.11m, 0.30m, 0.41m, 0.45m }; // Taux correspondants
+    private static readonly decimal[] TRANCHES_IMPOSITION = { 10225m, 26070m, 74545m, 160336m }; // Plafonds des tranches
+    private static readonly decimal[] TAUX_IMPOSITION = { 0.0m, 0.11m, 0.30m, 0.41m, 0.45m }; // Taux correspondants
 
     public static decimal CalculerImpotsAnnuel(
         string situationFamiliale,
@@ -66,22 +66,22 @@ public static class Simulateur
         var revenuImposableParPart = revenuAnnuel / partsFiscales;
 
         decimal impot = 0;
-        for (var i = 0; i < TranchesImposition.Length; i++)
+        for (var i = 0; i < TRANCHES_IMPOSITION.Length; i++)
         {
-            if (revenuImposableParPart <= TranchesImposition[i])
+            if (revenuImposableParPart <= TRANCHES_IMPOSITION[i])
             {
-                impot += (revenuImposableParPart - (i > 0 ? TranchesImposition[i - 1] : 0)) * TauxImposition[i];
+                impot += (revenuImposableParPart - (i > 0 ? TRANCHES_IMPOSITION[i - 1] : 0)) * TAUX_IMPOSITION[i];
                 break;
             }
             else
             {
-                impot += (TranchesImposition[i] - (i > 0 ? TranchesImposition[i - 1] : 0)) * TauxImposition[i];
+                impot += (TRANCHES_IMPOSITION[i] - (i > 0 ? TRANCHES_IMPOSITION[i - 1] : 0)) * TAUX_IMPOSITION[i];
             }
         }
 
-        if (revenuImposableParPart > TranchesImposition[^1])
+        if (revenuImposableParPart > TRANCHES_IMPOSITION[^1])
         {
-            impot += (revenuImposableParPart - TranchesImposition[^1]) * TauxImposition[^1];
+            impot += (revenuImposableParPart - TRANCHES_IMPOSITION[^1]) * TAUX_IMPOSITION[^1];
         }
 
         var impotParPart = impot;
