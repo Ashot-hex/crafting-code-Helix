@@ -46,7 +46,7 @@ public static class Simulateur
         }
 
         var baseQuotient = situationFamiliale == "Marié/Pacsé" ? 2 : 1;
-        decimal quotientEnfants = (decimal)Math.PI;
+        decimal quotientEnfants = 0m;
 
         if (nombreEnfants == 0)
         {
